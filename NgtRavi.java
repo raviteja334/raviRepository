@@ -23,7 +23,7 @@ public class NgtRavi extends RecordLifecycle {
         if (!t1.getValue().equals(t2.getValue())) {
             t2.setError("Credit currency and Debit currency does not match");
         }
-
+//edited
         return ft.getValidationResponse();
     }
 }
