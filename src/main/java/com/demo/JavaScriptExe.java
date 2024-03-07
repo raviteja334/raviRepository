@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 //locators in jse id,classname,name,tagname,css selector, xpath
-public class JavaScriptExecutor {
+public class JavaScriptExe {
 
 	public static void main(String[] args) {
 
