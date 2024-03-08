@@ -30,14 +30,14 @@ public class Scenario3Util {
 	static Actions actions;
 	static Map<String, String> excelValues = new HashMap<>();
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
-		readExcelValues();
-		openApplication();
-		takeScreenShot();
-		driverQuit();
-	}
+//	public static void main(String[] args) throws Exception {
+//		// TODO Auto-generated method stub
+//
+//		readExcelValues();
+//		openApplication();
+//		takeScreenShot();
+//		driverQuit();
+//	}
 
 	public static void driverQuit() {
 		driver.quit();
