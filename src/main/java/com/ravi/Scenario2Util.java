@@ -22,14 +22,17 @@ public class Scenario2Util {
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
 
-	public static void main(String[] args) throws Exception {
-
-		readExcelValues();
-		openApp();
-		enterTextInTextbox();
-		dateSlecting();
+//	public static void main(String[] args) throws Exception {
+//
+//		readExcelValues();
+//		openApp();
+//		enterTextInTextbox();
+//		dateSlecting();
+//		driverQuit();
+//		
+//	}
+	public static void driverQuit() {
 		driver.quit();
-		
 	}
 
 	public static void readExcelValues() throws Exception {
@@ -57,7 +60,7 @@ public class Scenario2Util {
 			return null;
 		}
 	}
-	private static void openApp() {
+	public static void openApp() {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);
@@ -66,7 +69,7 @@ public class Scenario2Util {
         driver.manage().window().maximize();
 	}
 	
-	private static void enterTextInTextbox() {
+	public static void enterTextInTextbox() {
 		util.Click(excelValues.get("skipSignInButton"));
 		util.Actions(excelValues.get("switchTo"));
 		util.Click(excelValues.get("framesPage"));
@@ -79,7 +82,7 @@ public class Scenario2Util {
 		driver.switchTo().defaultContent();
 		
 	}
-	private static void dateSlecting() {
+	public static void dateSlecting() {
 		util.Actions(excelValues.get("widgets"));
 		util.Click(excelValues.get("datePicker"));
 		util.Click(excelValues.get("datePicker1"));

@@ -1,11 +1,17 @@
 package com.ravi;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -28,14 +34,16 @@ public class Scenario3Util {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		readExcel.readExcelValues(excelValues);
-		System.out.println(excelValues);
+		readExcelValues();
 		openApplication();
 		takeScreenShot();
-		driver.quit();
+		driverQuit();
 	}
 
-	private static void openApplication() {
+	public static void driverQuit() {
+		driver.quit();
+	}
+	public static void openApplication() {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);
@@ -44,6 +52,31 @@ public class Scenario3Util {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
+	public static void readExcelValues() throws Exception {
+		FileInputStream fis = new FileInputStream("C:\\Users\\RNALAM\\Downloads\\Age_Validation.xlsx");
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		XSSFSheet shett = workbook.getSheetAt(1);
+
+		for (Row row : shett) {
+			String element = row.getCell(0).getStringCellValue();
+			Cell value = row.getCell(1);
+
+			excelValues.put(element, getStringValue(value));
+		}
+		workbook.close();
+	}
+
+	public static String getStringValue(Cell cell) {
+		if (cell == null) {
+			return null;
+		} else if (cell.getCellType() == CellType.STRING) {
+			return cell.getStringCellValue();
+		} else if (cell.getCellType() == CellType.NUMERIC) {
+			return String.valueOf(cell.getNumericCellValue());
+		} else {
+			return null;
+		}
+	}
 	public static void takeScreenShot() throws Exception {
 		util.Click(excelValues.get("skipSignInButton"));
 		util.Actions(excelValues.get("switchTo"));
@@ -52,7 +85,7 @@ public class Scenario3Util {
 		windowHandle();
 	}
 
-	private static void windowHandle() throws Exception {
+	public static void windowHandle() throws Exception {
 		String parentWindow = driver.getWindowHandle();
 		util.Click(excelValues.get("newWindowButton"));
 		Set<String> windows = driver.getWindowHandles();
@@ -67,14 +100,14 @@ public class Scenario3Util {
 		takingScreenShot();
 	}
 
-	private static void scrollWindow() {
+	public static void scrollWindow() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,1000)", "");
 		// WebElement text=driver.findElement(By.xpath(excelValues.get("elementForSS")));
 		// jse.executeScript("arguments[0].scrollIntoView()", text);
 	}
 
-	private static void takingScreenShot() throws Exception {
+	public static void takingScreenShot() throws Exception {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File file = ts.getScreenshotAs(OutputType.FILE);
 		Files.copy(file, new File("C:\\Users\\RNALAM\\OneDrive - Capgemini\\Desktop\\screenshot.png"));
