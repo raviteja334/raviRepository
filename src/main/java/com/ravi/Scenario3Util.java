@@ -102,7 +102,7 @@ public class Scenario3Util {
 
 	public static void scrollWindow() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,1000)", "");
+		jse.executeScript("window.scrollBy(0,1000);", "");
 		// WebElement text=driver.findElement(By.xpath(excelValues.get("elementForSS")));
 		// jse.executeScript("arguments[0].scrollIntoView()", text);
 	}
