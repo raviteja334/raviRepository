@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Scenario2Util {
-	
+
 	static DriverUtils util;
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
@@ -58,38 +58,40 @@ public class Scenario2Util {
 			return null;
 		}
 	}
+
 	public static void openApp() {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);
 		driver.get("https://demo.automationtesting.in/Index.html");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+		driver.manage().window().maximize();
 	}
-	
+
 	public static void enterTextInTextbox() {
 		util.Click(excelValues.get("skipSignInButton"));
 		util.Actions(excelValues.get("switchTo"));
 		util.Click(excelValues.get("framesPage"));
 		util.Click(excelValues.get("buttonForMultiFrames"));
-		
+
 		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ParentFrame"))));
 		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ChildFrame"))));
-		
-		util.Sendkeys(excelValues.get("textBox"), "Ravi" );
+
+		util.Sendkeys(excelValues.get("textBox"), "Ravi");
 		driver.switchTo().defaultContent();
-		
+
 	}
+
 	public static void dateSlecting() {
 		util.Actions(excelValues.get("widgets"));
 		util.Click(excelValues.get("datePicker"));
 		util.Click(excelValues.get("datePicker1"));
 		util.Click(excelValues.get("selectDate1"));
 		util.Click(excelValues.get("datePicker2"));
-		
+
 		util.Select(excelValues.get("changeMonth"), excelValues.get("selectMonth"));
 		util.Select(excelValues.get("changeYear"), "2024");
-		
+
 		util.Click(excelValues.get("selectDate2"));
 	}
 }

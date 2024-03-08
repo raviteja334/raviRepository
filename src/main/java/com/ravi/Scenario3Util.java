@@ -42,6 +42,7 @@ public class Scenario3Util {
 	public static void driverQuit() {
 		driver.quit();
 	}
+
 	public static void openApplication() {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
 		driver = new ChromeDriver();
@@ -76,6 +77,7 @@ public class Scenario3Util {
 			return null;
 		}
 	}
+
 	public static void takeScreenShot() throws Exception {
 		util.Click(excelValues.get("skipSignInButton"));
 		util.Actions(excelValues.get("switchTo"));
@@ -102,7 +104,8 @@ public class Scenario3Util {
 	public static void scrollWindow() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,1000);", "");
-		// WebElement text=driver.findElement(By.xpath(excelValues.get("elementForSS")));
+		// WebElement
+		// text=driver.findElement(By.xpath(excelValues.get("elementForSS")));
 		// jse.executeScript("arguments[0].scrollIntoView()", text);
 	}
 
