@@ -1,4 +1,4 @@
-package com.ravi;
+package com.demo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
