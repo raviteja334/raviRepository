@@ -1,9 +1,15 @@
 package com.ravi;
 
+import java.io.FileInputStream;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DriverUtils {
 
 	private WebDriver driver;
+	static Map<String, String> excelValues = new HashMap<>();
 	
 	public DriverUtils(WebDriver driver) {
 		this.driver=driver;
@@ -31,7 +38,7 @@ public class DriverUtils {
 	public void Click(String xpath) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		By by = By.xpath(xpath);
-		//wait.until(ExpectedConditions.elementToBeClickable(by));
+		wait.until(ExpectedConditions.elementToBeClickable(by));
 		driver.findElement(by).click();
 	}
 	
