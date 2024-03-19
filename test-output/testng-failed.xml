@@ -5,7 +5,9 @@
     <classes>
       <class name="com.ravi.Scenario2Util">
         <methods>
+          <include name="openApp"/>
           <include name="test"/>
+          <include name="driverQuit"/>
         </methods>
       </class> <!-- com.ravi.Scenario2Util -->
     </classes>
