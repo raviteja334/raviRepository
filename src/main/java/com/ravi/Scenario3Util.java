@@ -18,6 +18,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.driver.util.readExcel;
@@ -34,14 +36,15 @@ public class Scenario3Util {
 	@Test
 	public static void test() throws Exception {
 		readExcelValues();
-		openApplication();
 		takeScreenShot();
 	}
 
+	@AfterTest
 	public static void driverQuit() {
 		driver.quit();
 	}
 
+	@BeforeTest
 	public static void openApplication() {
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);

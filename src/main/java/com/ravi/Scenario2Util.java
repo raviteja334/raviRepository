@@ -13,6 +13,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Scenario2Util {
@@ -25,16 +28,16 @@ public class Scenario2Util {
 	@Test
 	public static void test() throws Exception {
 		readExcelValues();
-		openApp();
 		enterTextInTextbox();
 		dateSlecting();
-		driverQuit();
 	}
 
+	@AfterTest
 	public static void driverQuit() {
 		util.quitWIndow();
 	}
 
+	@BeforeTest
 	public static void openApp() {
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);
