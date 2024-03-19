@@ -52,7 +52,7 @@ public class Scenario3Util {
 	}
 
 	public static void readExcelValues() throws Exception {
-		FileInputStream fis = new FileInputStream("C:\\Users\\RNALAM\\Downloads\\Age_Validation.xlsx");
+		FileInputStream fis = new FileInputStream("C:\\Users\\RNALAM\\Downloads\\MiniProject\\Age_Validation.xlsx");
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFSheet shett = workbook.getSheetAt(1);
 

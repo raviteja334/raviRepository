@@ -31,7 +31,7 @@ public class DriverUtils {
 	public void Click(String xpath) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		By by = By.xpath(xpath);
-		wait.until(ExpectedConditions.elementToBeClickable(by));
+		//wait.until(ExpectedConditions.elementToBeClickable(by));
 		driver.findElement(by).click();
 	}
 	

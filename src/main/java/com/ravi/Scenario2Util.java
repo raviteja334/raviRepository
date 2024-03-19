@@ -23,7 +23,6 @@ public class Scenario2Util {
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
 	static DriverUtils util;
-	static String url = "https://demo.automationtesting.in/Index.html";
 
 	@Test
 	public static void test() throws Exception {
@@ -67,7 +66,7 @@ public class Scenario2Util {
 	}
 
 	public static void readExcelValues() throws Exception {
-		FileInputStream fis = new FileInputStream("C:\\Users\\RNALAM\\Downloads\\Age_Validation.xlsx");
+		FileInputStream fis = new FileInputStream("C:\\Users\\RNALAM\\Downloads\\MiniProject\\Age_Validation.xlsx");
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFSheet shett = workbook.getSheetAt(0);
 
