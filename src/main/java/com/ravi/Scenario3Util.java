@@ -18,6 +18,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
 
 import com.driver.util.readExcel;
 import com.google.common.io.Files;
@@ -30,26 +31,21 @@ public class Scenario3Util {
 	static Actions actions;
 	static Map<String, String> excelValues = new HashMap<>();
 
-//	public static void main(String[] args) throws Exception {
-//		// TODO Auto-generated method stub
-//
-//		readExcelValues();
-//		openApplication();
-//		takeScreenShot();
-//		driverQuit();
-//	}
+	@Test
+	public static void test() throws Exception {
+		readExcelValues();
+		openApplication();
+		takeScreenShot();
+	}
 
 	public static void driverQuit() {
 		driver.quit();
 	}
 
 	public static void openApplication() {
-		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
 		driver = new ChromeDriver();
 		util = new DriverUtils(driver);
-		driver.manage().window().maximize();
-		driver.get("https://demo.automationtesting.in/Index.html");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		util.openApp("https://demo.automationtesting.in/Index.html");
 	}
 
 	public static void readExcelValues() throws Exception {
@@ -60,9 +56,9 @@ public class Scenario3Util {
 		for (Row row : shett) {
 			String element = row.getCell(0).getStringCellValue();
 			Cell value = row.getCell(1);
-
 			excelValues.put(element, getStringValue(value));
 		}
+		
 		workbook.close();
 	}
 
@@ -96,6 +92,7 @@ public class Scenario3Util {
 				driver.switchTo().window(window);
 			}
 		}
+		
 		scrollWindow();
 		Thread.sleep(1000);
 		takingScreenShot();
@@ -104,9 +101,6 @@ public class Scenario3Util {
 	public static void scrollWindow() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,1000);", "");
-		// WebElement
-		// text=driver.findElement(By.xpath(excelValues.get("elementForSS")));
-		// jse.executeScript("arguments[0].scrollIntoView()", text);
 	}
 
 	public static void takingScreenShot() throws Exception {

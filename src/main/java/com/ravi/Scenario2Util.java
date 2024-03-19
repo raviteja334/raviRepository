@@ -13,24 +13,54 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
 public class Scenario2Util {
 
-	static DriverUtils util;
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
+	static DriverUtils util;
+	static String url = "https://demo.automationtesting.in/Index.html";
 
-//	public static void main(String[] args) throws Exception {
-//
-//		readExcelValues();
-//		openApp();
-//		enterTextInTextbox();
-//		dateSlecting();
-//		driverQuit();
-//		
-//	}
+	@Test
+	public static void test() throws Exception {
+		readExcelValues();
+		openApp();
+		enterTextInTextbox();
+		dateSlecting();
+		driverQuit();
+	}
+
 	public static void driverQuit() {
-		driver.quit();
+		util.quitWIndow();
+	}
+
+	public static void openApp() {
+		driver = new ChromeDriver();
+		util = new DriverUtils(driver);
+		util.openApp("https://demo.automationtesting.in/Index.html");
+	}
+
+	public static void enterTextInTextbox() {
+		util.Click(excelValues.get("skipSignInButton"));
+		util.Actions(excelValues.get("switchTo"));
+		util.Click(excelValues.get("framesPage"));
+		util.Click(excelValues.get("buttonForMultiFrames"));
+		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ParentFrame"))));
+		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ChildFrame"))));
+		util.Sendkeys(excelValues.get("textBox"), "Ravi");
+		driver.switchTo().defaultContent();
+	}
+
+	public static void dateSlecting() {
+		util.Actions(excelValues.get("widgets"));
+		util.Click(excelValues.get("datePicker"));
+		util.Click(excelValues.get("datePicker1"));
+		util.Click(excelValues.get("selectDate1"));
+		util.Click(excelValues.get("datePicker2"));
+		util.Select(excelValues.get("changeMonth"), excelValues.get("selectMonth"));
+		util.Select(excelValues.get("changeYear"), "2024");
+		util.Click(excelValues.get("selectDate2"));
 	}
 
 	public static void readExcelValues() throws Exception {
@@ -41,13 +71,14 @@ public class Scenario2Util {
 		for (Row row : shett) {
 			String element = row.getCell(0).getStringCellValue();
 			Cell value = row.getCell(1);
-
 			excelValues.put(element, getStringValue(value));
 		}
+
 		workbook.close();
 	}
 
 	private static String getStringValue(Cell cell) {
+
 		if (cell == null) {
 			return null;
 		} else if (cell.getCellType() == CellType.STRING) {
@@ -57,41 +88,5 @@ public class Scenario2Util {
 		} else {
 			return null;
 		}
-	}
-
-	public static void openApp() {
-		System.setProperty("webdriver.chrome.driver", "C:/Users/RNALAM/Downloads/chromedriver.exe");
-		driver = new ChromeDriver();
-		util = new DriverUtils(driver);
-		driver.get("https://demo.automationtesting.in/Index.html");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().window().maximize();
-	}
-
-	public static void enterTextInTextbox() {
-		util.Click(excelValues.get("skipSignInButton"));
-		util.Actions(excelValues.get("switchTo"));
-		util.Click(excelValues.get("framesPage"));
-		util.Click(excelValues.get("buttonForMultiFrames"));
-
-		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ParentFrame"))));
-		util.SwitchToFrame(driver.findElement(By.xpath(excelValues.get("ChildFrame"))));
-
-		util.Sendkeys(excelValues.get("textBox"), "Ravi");
-		driver.switchTo().defaultContent();
-
-	}
-
-	public static void dateSlecting() {
-		util.Actions(excelValues.get("widgets"));
-		util.Click(excelValues.get("datePicker"));
-		util.Click(excelValues.get("datePicker1"));
-		util.Click(excelValues.get("selectDate1"));
-		util.Click(excelValues.get("datePicker2"));
-
-		util.Select(excelValues.get("changeMonth"), excelValues.get("selectMonth"));
-		util.Select(excelValues.get("changeYear"), "2024");
-
-		util.Click(excelValues.get("selectDate2"));
 	}
 }
