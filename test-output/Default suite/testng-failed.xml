@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ravi.Scenario2Util">
+      <class name="com.ravi.Scenario4">
         <methods>
-          <include name="openApp"/>
           <include name="test"/>
-          <include name="driverQuit"/>
+          <include name="openApp"/>
+          <include name="quitWindow"/>
         </methods>
-      </class> <!-- com.ravi.Scenario2Util -->
+      </class> <!-- com.ravi.Scenario4 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
