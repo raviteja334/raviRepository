@@ -16,7 +16,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Scenario4 {
+public class Scenario4Util {
 
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
