@@ -3,7 +3,6 @@ package com.ravi;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -23,9 +22,9 @@ public class Scenario4Util {
 	static DriverUtils util;
 	
 	@Test
-	public void test() throws Exception {
+	public void compareValues() throws Exception {
 		readExcelValues();
-		CompareBothValues();
+		compareBothValues();
 	}
 	
 	@AfterTest
@@ -40,7 +39,7 @@ public class Scenario4Util {
 		util.openApp("https://practice.expandtesting.com/dynamic-table");
 	}
 	
-	public static void CompareBothValues() {
+	public static void compareBothValues() {
 		String text1 = util.GetText(excelValues.get("text1"));
 		String num = text1.replace("Chrome CPU: ", "").trim();
 		String text2 = util.GetText(excelValues.get("text2"));

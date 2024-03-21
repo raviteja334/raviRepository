@@ -2,11 +2,9 @@ package com.ravi;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,20 +19,19 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.driver.util.readExcel;
 import com.google.common.io.Files;
 
 public class Scenario3Util {
 
-	static DriverUtils util;
-	static readExcel readexcel;
-	static WebDriver driver;
 	static Actions actions;
+	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
-
+	static readExcel readexcel;
+	static DriverUtils util;
+	
 	@Test
-	public static void test() throws Exception {
+	public static void takeAScreenShot() throws Exception {
 		readExcelValues();
 		takeScreenShot();
 	}

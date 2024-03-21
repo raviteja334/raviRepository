@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -20,12 +19,13 @@ public class Scenario5Util {
 	static DriverUtils util;
 	
 	@Test
-	public void test() throws Exception {
+	public void firstProductPrice() throws Exception {
 		readJsonValues();
 		searchAndSorting();
-		firstProductPrice();
+		calculatingFirstProductPrice();
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void readJsonValues() throws Exception {
 		FileReader file = new FileReader("C:\\Users\\RNALAM\\Downloads\\MiniProject\\data.json");
 		ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +41,7 @@ public class Scenario5Util {
 		util.Click(map.get("low-high"));
 	}
 	
-	public static void firstProductPrice(){
+	public static void calculatingFirstProductPrice(){
 		String price = util.GetText(map.get("productPrice"));
 		int amount = Integer.parseInt(price.replace("[^0-9]", ""));
 		

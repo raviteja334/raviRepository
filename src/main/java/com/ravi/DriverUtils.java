@@ -1,19 +1,11 @@
 package com.ravi;
 
-import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -51,7 +43,7 @@ public class DriverUtils {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		By by = By.xpath(xpath);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
-		//driver.findElement(by).clear();
+		driver.findElement(by).clear();
 		driver.findElement(by).sendKeys(input);
 	}
 	

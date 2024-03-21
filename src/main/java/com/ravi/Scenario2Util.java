@@ -22,7 +22,7 @@ public class Scenario2Util {
 	static DriverUtils util;
 
 	@Test
-	public static void test() throws Exception {
+	public static void dateSelecting() throws Exception {
 		readExcelValues();
 		enterTextInTextbox();
 		dateSlecting();
