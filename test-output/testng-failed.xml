@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.replicon.weekWorkTime">
+      <class name="com.replicon.companyHolidays">
         <methods>
           <include name="openApp"/>
-          <include name="printWeekWorkTime"/>
           <include name="quitWindow"/>
+          <include name="printCompanyHolidays"/>
         </methods>
-      </class> <!-- com.replicon.weekWorkTime -->
+      </class> <!-- com.replicon.companyHolidays -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
