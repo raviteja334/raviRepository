@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ravi.Scenario5Util">
+      <class name="com.replicon.weekWorkTime">
         <methods>
-          <include name="test"/>
           <include name="openApp"/>
+          <include name="printWeekWorkTime"/>
+          <include name="quitWindow"/>
         </methods>
-      </class> <!-- com.ravi.Scenario5Util -->
+      </class> <!-- com.replicon.weekWorkTime -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

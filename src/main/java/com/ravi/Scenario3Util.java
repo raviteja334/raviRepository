@@ -27,9 +27,8 @@ public class Scenario3Util {
 	static Actions actions;
 	static WebDriver driver;
 	static Map<String, String> excelValues = new HashMap<>();
-	static readExcel readexcel;
 	static DriverUtils util;
-	
+
 	@Test
 	public static void takeAScreenShot() throws Exception {
 		readExcelValues();
@@ -58,7 +57,7 @@ public class Scenario3Util {
 			Cell value = row.getCell(1);
 			excelValues.put(element, getStringValue(value));
 		}
-		
+
 		workbook.close();
 	}
 
@@ -92,7 +91,7 @@ public class Scenario3Util {
 				driver.switchTo().window(window);
 			}
 		}
-		
+
 		scrollWindow();
 		Thread.sleep(1000);
 		takingScreenShot();
@@ -100,7 +99,7 @@ public class Scenario3Util {
 
 	public static void scrollWindow() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,1000);", "");
+		jse.executeScript("document.getElementsByClassName('selenium-button selenium-ide text-uppercase fw-bold')[0].scrollIntoView()");
 	}
 
 	public static void takingScreenShot() throws Exception {
