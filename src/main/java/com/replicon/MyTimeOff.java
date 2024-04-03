@@ -1,4 +1,4 @@
-package com.ravi;
+package com.replicon;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,9 +12,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.replicon.driverUtils;
-
-public class Testtt {
+public class MyTimeOff {
 
 	static WebDriver driver;
 	static driverUtils util;
@@ -39,23 +37,22 @@ public class Testtt {
 		}
 		
 		util.Click("//a[@href='#' and @class='fakeButtonBase showMore']");
-		List<WebElement> holidayNames = driver.findElements(By.xpath("//span[@class='timeOffType']"));
-		System.out.println(holidayNames.size());
-		List<WebElement> holidayDates = driver.findElements(By.xpath("//span[@class='balanceAmount']//strong"));
-		System.out.println(holidayDates.size());
+		List<WebElement> leaveType = driver.findElements(By.xpath("//span[@class='timeOffType']"));
+		List<WebElement> dayes = driver.findElements(By.xpath("//span[@class='balanceAmount']//strong"));
 		Map<String, String> map = new LinkedHashMap<>();
 
-		for (int i = 0; i < holidayNames.size() - 1; i++) {
-			String holidayName = holidayNames.get(i + 1).getText();
-			String holidayDate = holidayDates.get(i).getText();
-			map.put(holidayName, holidayDate);
+		for (int i = 0; i < leaveType.size() - 1; i++) {
+			String leavetype = leaveType.get(i + 1).getText();
+			String leaveName = leavetype.replace("[IND] - ", "");
+			String Days = dayes.get(i).getText();
+			map.put(leaveName, Days);
 		}
 
 		for (Map.Entry<String, String> entry : map.entrySet())
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 	}
 	
-	//@AfterTest
+	@AfterTest
 	public static void quitWindow() {
 		util.quitWIndow();
 	}

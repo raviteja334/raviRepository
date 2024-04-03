@@ -14,7 +14,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class weekWorkTime {
+public class MySchedule {
 
 	static WebDriver driver;
 	static driverUtils util;
@@ -37,18 +37,14 @@ public class weekWorkTime {
 				driver.switchTo().window(window);
 			}
 		}
-		Actions actions = new Actions(driver);
-		actions.moveToElement(driver.findElement(By.xpath("//a[@aria-label='My Replicon']"))).click().build().perform();
-		util.Click("//a[text()='See all timesheets']");
 		
-		List<WebElement> timesheetPeriods = driver.findElements(By.xpath("//a[@class='displayName']"));
-		System.out.println(timesheetPeriods.size());
-		List<WebElement> weekWorkTime = driver.findElements(By.xpath("//td[@aria-describedby='grid_urn:replicon:timesheet-list-column:total-payable-duration']"));
+		List<WebElement> days = driver.findElements(By.xpath("//div[@class='label']/span[@data-bind='text: dayDisplayText']"));
+		List<WebElement> workingHours = driver.findElements(By.xpath("//li[@class='scheduleItem']"));
 		Map<String, String> map = new LinkedHashMap<>();
 		
-		for (int i = 0; i < timesheetPeriods.size(); i++) {
-			String timePeriod = timesheetPeriods.get(i).getText();
-			String hours = weekWorkTime.get(i).getText();
+		for (int i = 0; i < days.size(); i++) {
+			String timePeriod = days.get(i).getText();
+			String hours = workingHours.get(i).getText();
 			map.put(timePeriod, hours);
 		}
 		
